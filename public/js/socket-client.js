@@ -1,7 +1,8 @@
 // Referencias del html
 const lblOnline = document.querySelector('#lblOnline'); 
 const lblOffline = document.querySelector('#lblOffline');
-
+const txtMensaje = document.querySelector('#txtMensaje');
+const btnEnviar = document.querySelector('#btnEnviar');
 const socket = io();
 
 socket.on('connect', () => {
@@ -16,4 +17,15 @@ socket.on('disconnect', () => {
 
     lblOffline.style.display = '';
     lblOnline.style.display = 'none';
+})
+
+btnEnviar.addEventListener('click', () => {
+    const mensaje = txtMensaje.value;
+    const payload = {
+        mensaje,
+        id: '123ABC',
+        fecha: new Date().getTime()
+    }
+    
+    socket.emit('enviar-mensaje', payload );
 })

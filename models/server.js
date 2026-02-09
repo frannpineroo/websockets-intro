@@ -35,6 +35,7 @@ class Server {
     }
 
     sockets() {
+
         this.io.on('connection', socket => {
             console.log('Cliente conectado', socket.id );
 
@@ -42,7 +43,11 @@ class Server {
                 console.log('Cliente desconectado');
             })
 
+            socket.on('enviar-mensaje', ( payload ) => {
+                console.log(payload);
+            })
         })
+
     }
 
     listen() {
