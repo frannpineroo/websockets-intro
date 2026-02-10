@@ -42,7 +42,9 @@ class Server {
                 // console.log('Cliente desconectado');
             })
 
-            socket.on('enviar-mensaje', ( payload ) => {
+            socket.on('enviar-mensaje', ( payload, callback ) => {
+                const id = 123456;
+                callback( id );
                 this.io.emit('enviar-mensaje', payload );
             })
         })
